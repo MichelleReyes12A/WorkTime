@@ -1,81 +1,138 @@
-<!DOCTYPE html> <!-- Tipo HTML, como una definicion -->
-
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HORAS DE ESCLAVITUD</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem;
-            background-color: #808080;
-        }
-        h1 {color: #FFFFFF;}
-
-        
-        button {
-            margin: 1rem;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 8px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-              }
-        
-        .info {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            white-space: pre-line; /* para que los saltos de línea se vean */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horas laborales</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 1rem;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+    }
+    button, input {
+      margin: 0.5rem 0;
+      padding: 0.6rem;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .resultado {
+      margin-top: 1rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
-
-    
 <body>
-    <h1>Horas de Esclavitud (:</h1>
+  <h1>Horas de esclavitud (: </h1>
 
-    <button onclick="marcarEntrada()">Marcar entrada</button>
-    <button onclick="marcarSalida()">Marcar salida</button>
+  <button onclick="marcarEntrada()">Marcar entrada</button>
+  <input type="time" id="entradaManual" />
+  <button onclick="usarEntradaManual()">Usar entrada manual</button>
 
-    <div class="info" id="resultado"></div>
+  <button onclick="marcarSalida()">Marcar salida</button>
+  <input type="time" id="salidaManual" />
+  <button onclick="usarSalidaManual()">Usar salida manual</button>
 
-    <script>
-        let entrada = null;
-        let salida = null;
-        function marcarEntrada() 
-        {
-            entrada = new Date();
-            document.getElementById('resultado').innerText = `Entrada registrada a las ${entrada.toLocaleTimeString()}`;
+  <div class="resultado" id="info"></div>
+
+  <script>
+    let entrada = null;
+    let salida = null;
+    const HORA_COMIDA = 1; // 1 hora
+
+    function format(date) {
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function guardarRegistro(fechaISO, horas) {
+      let registros = JSON.parse(localStorage.getItem("registros") || "{}");
+      registros[fechaISO] = horas;
+      localStorage.setItem("registros", JSON.stringify(registros));
+    }
+
+    function obtenerHorasSemana() {
+      let registros = JSON.parse(localStorage.getItem("registros") || "{}");
+      let total = 0;
+      let hoy = new Date();
+      let inicioSemana = new Date(hoy);
+      inicioSemana.setDate(hoy.getDate() - hoy.getDay() + 1); // Lunes
+
+      for (let fecha in registros) {
+        let d = new Date(fecha);
+        if (d >= inicioSemana && d <= hoy) {
+          total += registros[fecha];
         }
+      }
+      return total;
+    }
 
-        function marcarSalida() 
-        {
-            if (!entrada) 
-            {
-                alert("Primero marca tu entrada");
-                return;
-            }
+    function mostrarResultado(horas) {
+      const fecha = new Date().toISOString().split('T')[0];
+      guardarRegistro(fecha, horas);
 
-            salida = new Date();
-            const diffMs = salida - entrada;
-            const diffHrs = diffMs / 1000 / 60 / 60;
-            const horasNetas = diffHrs - 1; // restamos 1 hora de comida
+      const semana = obtenerHorasSemana();
+      const faltan = Math.max(0, 40 - semana);
 
-            document.getElementById('resultado').innerText =
-                `Entrada: ${entrada.toLocaleTimeString()}\n` +
-                `Salida: ${salida.toLocaleTimeString()}\n` +
-                `Total trabajado (menos 1h comida): ${horasNetas.toFixed(2)} hrs`;
-        }
-    </script>
+      const ahora = new Date();
+      const sugerida = new Date(ahora.getTime() + (faltan * 60 * 60 * 1000));
+
+      document.getElementById('info').innerText =
+        `Horas trabajadas hoy: ${horas.toFixed(2)} hrs\n` +
+        `Horas acumuladas esta semana: ${semana.toFixed(2)} hrs\n` +
+        `Faltan: ${faltan.toFixed(2)} hrs para llegar a 40\n` +
+        (salida ? "" : `Hora sugerida de salida: ${format(sugerida)}`);
+    }
+
+    function calcularHoras() {
+      if (!entrada || !salida) {
+        alert("Falta marcar entrada o salida");
+        return;
+      }
+
+      const diff = (salida - entrada) / 1000 / 60 / 60; // en horas
+      const horasTrabajadas = Math.max(0, diff - HORA_COMIDA);
+      mostrarResultado(horasTrabajadas);
+    }
+
+    function marcarEntrada() {
+      entrada = new Date();
+      alert("Entrada registrada a las " + format(entrada));
+    }
+
+    function marcarSalida() {
+      salida = new Date();
+      alert("Salida registrada a las " + format(salida));
+      calcularHoras();
+    }
+
+    function usarEntradaManual() {
+      const input = document.getElementById('entradaManual').value;
+      if (!input) return alert("Hora inválida");
+
+      const hoy = new Date();
+      const [h, m] = input.split(":");
+      entrada = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), h, m);
+      alert("Entrada manual registrada a las " + format(entrada));
+    }
+
+    function usarSalidaManual() {
+      const input = document.getElementById('salidaManual').value;
+      if (!input) return alert("Hora inválida");
+
+      const hoy = new Date();
+      const [h, m] = input.split(":");
+      salida = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), h, m);
+      alert("Salida manual registrada a las " + format(salida));
+      calcularHoras();
+    }
+  </script>
 </body>
-
-    
 </html>
-
