@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de horas</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #222;
+        }
+        button {
+            margin: 1rem;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .info {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contador de horas</h1>
+
+    <button onclick="marcarEntrada()">Marcar entrada</button>
+    <button onclick="marcarSalida()">Marcar salida</button>
+
+    <div class="info" id="resultado"></div>
+
+    <script>
+        let entrada = null;
+        let salida = null;
+
+        function marcarEntrada() {|
+            entrada = new Date();
+            document.getElementById('resultado').innerText = `Entrada registrada a las ${entrada.toLocaleTimeString()}`;
+        }
+
+        function marcarSalida() {
+            if (!entrada) {
+                alert("Primero marca tu entrada");
+                return;
+            }
+
+            salida = new Date();
+            const diffMs = salida - entrada;
+            const diffHrs = diffMs / 1000 / 60 / 60;
+            const horasNetas = diffHrs - 1; // restamos 1 hora de comida
+
+            document.getElementById('resultado').innerText =
+                `Entrada: ${entrada.toLocaleTimeString()}\n` +
+                `Salida: ${salida.toLocaleTimeString()}\n` +
+                `Total trabajado (menos 1h comida): ${horasNetas.toFixed(2)} hrs`;
+        }
+    </script>
+</body>
+</html>
