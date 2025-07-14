@@ -1,138 +1,133 @@
-<!DOCTYPE html> <!-- Tipo HTML -->
-<html lang="es"> <!-- idioma -->
-  
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Horas de Miseria</title> <!-- Nombre de la pagina, se ve cuando ves URL-->
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador de semana laboral</title>
   <style>
-    body 
-    {
-      font-family: sans-serif;
-      max-width: 600px;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      max-width: 700px;
       margin: auto;
-      padding: 1rem;
-      background-color: #808080;
     }
-    
-    h1 
-    {
+    h1 {
       text-align: center;
     }
-    
-    button, input 
-    {
-      margin: 0.5rem 0;
-      padding: 0.6rem;
-      font-size: 1rem;
+    table {
       width: 100%;
-    }
-    
-    .resultado 
-    {
+      border-collapse: collapse;
       margin-top: 1rem;
-      background: white;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    input[type="time"] {
+      width: 90%;
+      padding: 0.3rem;
+    }
+    .summary {
+      margin-top: 2rem;
       padding: 1rem;
+      background: #fff;
       border-radius: 8px;
-      box-shadow: 0 0 4px rgba(0,0,0,0.1);
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
     }
   </style>
 </head>
-
-
-  
 <body>
-  <h1>Horas de esclavitud (: </h1>
+  <h1>Simulador de semana laboral</h1>
 
-  <!-- <button onclick="marcarEntrada()">Marcar entrada</button> -->
-  <input type="time" id="entradaManual" />
-  <button onclick="usarEntradaManual()">Entrada manual</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+        <th>Horas trabajadas</th>
+      </tr>
+    </thead>
+    <tbody id="tabla">
+      <!-- Las filas se generan con JS -->
+    </tbody>
+  </table>
 
-  <button onclick="marcarSalida()">Marcar salida</button>
-  <input type="time" id="salidaManual" />
-  <button onclick="usarSalidaManual()">Usar salida manual</button>
-
-  <div class="resultado" id="info"></div>
+  <div class="summary" id="resumen">
+    Total semanal: 0.00 hrs<br>
+    Te faltan: 40.00 hrs para llegar a 40
+  </div>
 
   <script>
-    let entrada = null;
-    let salida = null;
-    const HORA_COMIDA = 1; // 1 hora
+    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
+    const tabla = document.getElementById("tabla");
+    const resumen = document.getElementById("resumen");
 
-    function format(date) 
-    { return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
+    function crearFila(dia, i) {
+      const tr = document.createElement("tr");
 
-    
+      const tdDia = document.createElement("td");
+      tdDia.textContent = dia;
 
-    
+      const tdEntrada = document.createElement("td");
+      const entrada = document.createElement("input");
+      entrada.type = "time";
+      entrada.id = `entrada-${i}`;
+      entrada.oninput = calcularTodo;
+      tdEntrada.appendChild(entrada);
 
-    function mostrarResultado(horas) 
-    {
-      const fecha = new Date().toISOString().split('T')[0];
-      guardarRegistro(fecha, horas);
+      const tdSalida = document.createElement("td");
+      const salida = document.createElement("input");
+      salida.type = "time";
+      salida.id = `salida-${i}`;
+      salida.oninput = calcularTodo;
+      tdSalida.appendChild(salida);
 
-      const semana = obtenerHorasSemana();
-      const faltan = Math.max(0, 40 - semana);
+      const tdHoras = document.createElement("td");
+      tdHoras.id = `horas-${i}`;
+      tdHoras.textContent = "0.00";
 
-      const ahora = new Date();
-      const sugerida = new Date(ahora.getTime() + (faltan * 60 * 60 * 1000));
+      tr.appendChild(tdDia);
+      tr.appendChild(tdEntrada);
+      tr.appendChild(tdSalida);
+      tr.appendChild(tdHoras);
 
-      document.getElementById('info').innerText =
-        `Horas trabajadas hoy: ${horas.toFixed(2)} hrs\n` +
-        `Horas acumuladas esta semana: ${semana.toFixed(2)} hrs\n` +
-        `Faltan: ${faltan.toFixed(2)} hrs para llegar a 40\n` +
-        (salida ? "" : `Hora sugerida de salida: ${format(sugerida)}`);
+      tabla.appendChild(tr);
     }
 
+    function calcularTodo() {
+      let total = 0;
 
-    
-    function calcularHoras() 
-    {
-      if (!entrada || !salida) 
-      {
-        alert("Falta marcar entrada o salida");
-        return;
+      for (let i = 0; i < dias.length; i++) {
+        const entrada = document.getElementById(`entrada-${i}`).value;
+        const salida = document.getElementById(`salida-${i}`).value;
+        const tdHoras = document.getElementById(`horas-${i}`);
+
+        if (entrada && salida) {
+          const [eh, em] = entrada.split(":").map(Number);
+          const [sh, sm] = salida.split(":").map(Number);
+
+          let horas = (sh + sm / 60) - (eh + em / 60) - 1; // -1 por comida
+
+          horas = Math.max(0, horas);
+          tdHoras.textContent = horas.toFixed(2);
+          total += horas;
+        } else {
+          tdHoras.textContent = "0.00";
+        }
       }
 
-      const diff = (salida - entrada) / 1000 / 60 / 60; // en horas
-      const horasTrabajadas = Math.max(0, diff - HORA_COMIDA);
-      mostrarResultado(horasTrabajadas);
+      const faltan = Math.max(0, 40 - total);
+      resumen.innerHTML = `
+        Total semanal: ${total.toFixed(2)} hrs<br>
+        ${faltan === 0 ? "¡Ya cumpliste tus 40 horas! 🎉" : `Te faltan: ${faltan.toFixed(2)} hrs para llegar a 40`}
+      `;
     }
 
-    function marcarEntrada() {
-      entrada = new Date();
-      alert("Entrada registrada a las " + format(entrada));
-    }
-
-    function marcarSalida() {
-      salida = new Date();
-      alert("Salida registrada a las " + format(salida));
-      calcularHoras();
-    }
-
-    function usarEntradaManual() {
-      const input = document.getElementById('entradaManual').value;
-      if (!input) return alert("Hora inválida");
-
-      const hoy = new Date();
-      const [h, m] = input.split(":");
-      entrada = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), h, m);
-      alert("Entrada manual registrada a las " + format(entrada));
-    }
-
-    function usarSalidaManual() {
-      const input = document.getElementById('salidaManual').value;
-      if (!input) return alert("Hora inválida");
-
-      const hoy = new Date();
-      const [h, m] = input.split(":");
-      salida = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), h, m);
-      alert("Salida manual registrada a las " + format(salida));
-      calcularHoras();
-    }
+    // Inicializar tabla
+    dias.forEach((dia, i) => crearFila(dia, i));
   </script>
 </body>
-
-  
 </html>
