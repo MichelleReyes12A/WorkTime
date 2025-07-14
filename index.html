@@ -1,27 +1,36 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html> <!-- Tipo HTML -->
+<html lang="es"> <!-- idioma -->
+  
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Horas laborales</title>
+  <title>Horas de Miseria</title> <!-- Nombre de la pagina, se ve cuando ves URL-->
+  
   <style>
-    body {
+    body 
+    {
       font-family: sans-serif;
       max-width: 600px;
       margin: auto;
       padding: 1rem;
-      background-color: #f4f4f4;
+      background-color: #000000;
     }
-    h1 {
+    
+    h1 
+    {
       text-align: center;
     }
-    button, input {
+    
+    button, input 
+    {
       margin: 0.5rem 0;
       padding: 0.6rem;
       font-size: 1rem;
       width: 100%;
     }
-    .resultado {
+    
+    .resultado 
+    {
       margin-top: 1rem;
       background: white;
       padding: 1rem;
@@ -30,12 +39,15 @@
     }
   </style>
 </head>
+
+
+  
 <body>
   <h1>Horas de esclavitud (: </h1>
 
-  <button onclick="marcarEntrada()">Marcar entrada</button>
+  <!-- <button onclick="marcarEntrada()">Marcar entrada</button> -->
   <input type="time" id="entradaManual" />
-  <button onclick="usarEntradaManual()">Usar entrada manual</button>
+  <button onclick="usarEntradaManual()">Entrada manual</button>
 
   <button onclick="marcarSalida()">Marcar salida</button>
   <input type="time" id="salidaManual" />
@@ -48,33 +60,15 @@
     let salida = null;
     const HORA_COMIDA = 1; // 1 hora
 
-    function format(date) {
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
+    function format(date) 
+    { return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
 
-    function guardarRegistro(fechaISO, horas) {
-      let registros = JSON.parse(localStorage.getItem("registros") || "{}");
-      registros[fechaISO] = horas;
-      localStorage.setItem("registros", JSON.stringify(registros));
-    }
+    
 
-    function obtenerHorasSemana() {
-      let registros = JSON.parse(localStorage.getItem("registros") || "{}");
-      let total = 0;
-      let hoy = new Date();
-      let inicioSemana = new Date(hoy);
-      inicioSemana.setDate(hoy.getDate() - hoy.getDay() + 1); // Lunes
+    
 
-      for (let fecha in registros) {
-        let d = new Date(fecha);
-        if (d >= inicioSemana && d <= hoy) {
-          total += registros[fecha];
-        }
-      }
-      return total;
-    }
-
-    function mostrarResultado(horas) {
+    function mostrarResultado(horas) 
+    {
       const fecha = new Date().toISOString().split('T')[0];
       guardarRegistro(fecha, horas);
 
@@ -91,8 +85,12 @@
         (salida ? "" : `Hora sugerida de salida: ${format(sugerida)}`);
     }
 
-    function calcularHoras() {
-      if (!entrada || !salida) {
+
+    
+    function calcularHoras() 
+    {
+      if (!entrada || !salida) 
+      {
         alert("Falta marcar entrada o salida");
         return;
       }
@@ -135,4 +133,6 @@
     }
   </script>
 </body>
+
+  
 </html>
