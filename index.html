@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de horas</title>
-    <link rel="manifest" href="manifest.json">
     <style>
         body {
             font-family: sans-serif;
@@ -30,6 +29,7 @@
         .info {
             margin-top: 2rem;
             font-size: 1.2rem;
+            white-space: pre-line; /* para que los saltos de línea se vean */
         }
     </style>
 </head>
@@ -45,7 +45,7 @@
         let entrada = null;
         let salida = null;
 
-        function marcarEntrada() {|
+        function marcarEntrada() {
             entrada = new Date();
             document.getElementById('resultado').innerText = `Entrada registrada a las ${entrada.toLocaleTimeString()}`;
         }
@@ -69,3 +69,4 @@
     </script>
 </body>
 </html>
+
