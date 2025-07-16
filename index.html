@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
+  
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Simulador de semana laboral</title>
+  <title>Horas de Miseria</title>
   <style>
-    body {
+    body 
+    {
       font-family: Arial, sans-serif;
       padding: 2rem;
       background-color: #f9f9f9;
       max-width: 700px;
       margin: auto;
     }
-    h1 {
+    
+    h1 
+    {
       text-align: center;
     }
-    table {
+    
+    table 
+    {
       width: 100%;
       border-collapse: collapse;
       margin-top: 1rem;
@@ -38,8 +45,11 @@
     }
   </style>
 </head>
+
+
+  
 <body>
-  <h1>Simulador de semana laboral</h1>
+  <h1>Simulador de Horas de Explotación</h1>
 
   <table>
     <thead>
@@ -60,14 +70,17 @@
     Te faltan: 40.00 hrs para llegar a 40
   </div>
 
+  
   <script>
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
     const tabla = document.getElementById("tabla");
     const resumen = document.getElementById("resumen");
 
-    function crearFila(dia, i) {
-      const tr = document.createElement("tr");
 
+    
+    function crearFila(dia, i) 
+    {
+      const tr = document.createElement("tr");
       const tdDia = document.createElement("td");
       tdDia.textContent = dia;
 
@@ -97,7 +110,10 @@
       tabla.appendChild(tr);
     }
 
-    function calcularTodo() {
+
+    
+    function calcularTodo() 
+    {
       let total = 0;
 
       for (let i = 0; i < dias.length; i++) {
@@ -129,5 +145,9 @@
     // Inicializar tabla
     dias.forEach((dia, i) => crearFila(dia, i));
   </script>
+  
 </body>
+
+
+  
 </html>
