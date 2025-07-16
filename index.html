@@ -3,22 +3,24 @@
 
   
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Horas de Miseria</title>
-  <style>
+  <meta charset="UTF-8"> <!-- Caracteres de la pagina, acentos, ñ, simbolos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ajuste de vista, tamano -->
+  <title>Horas de Miseria</title> <!-- Nombre de la pagina -->
+  
+  <style> <!-- ------------------------------ -->
     body 
     {
       font-family: Arial, sans-serif;
       padding: 2rem;
-      background-color: #f9f9f9;
-      max-width: 700px;
+      background-color: #000000; <!-- Color hexadecimal NEGRO -->
+      max-width: 700px; <!-- Ancho maximo de la pantalla -->
       margin: auto;
     }
     
     h1 
     {
       text-align: center;
+      color: #FFFFFF; <!-- Color hexadecimal BLANCO -->
     }
     
     table 
@@ -27,39 +29,48 @@
       border-collapse: collapse;
       margin-top: 1rem;
     }
-    th, td {
-      border: 1px solid #ddd;
+    
+    th, td <!-- Estilos de celdas --> 
+    {
+      border: 1px solid #ddd; <!-- GRIS --> 
       padding: 0.5rem;
       text-align: center;
     }
-    input[type="time"] {
+    
+    input[type="time"] <!-- Estilo de entrada de datos de tiempo --> 
+    {
       width: 90%;
       padding: 0.3rem;
     }
-    .summary {
+    
+    .summary <!-- Estilo de la caja de salida --> 
+    { 
       margin-top: 2rem;
       padding: 1rem;
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 0 6px rgba(0,0,0,0.1);
     }
-  </style>
+  </style> <!-- ---------------------------- -->
+  
 </head>
 
 
   
-<body>
+<body> <!-- ======================================================================== --> 
   <h1>Simulador de Horas de Explotación</h1>
 
   <table>
-    <thead>
-      <tr>
+    <thead> <!-- Table Head, definimos el nombre de las filas --> 
+      background-color: #FFE2E7;
+      <tr> <!-- Table Row --> 
         <th>Día</th>
         <th>Entrada</th>
         <th>Salida</th>
         <th>Horas trabajadas</th>
       </tr>
     </thead>
+    
     <tbody id="tabla">
       <!-- Las filas se generan con JS -->
     </tbody>
@@ -146,7 +157,7 @@
     dias.forEach((dia, i) => crearFila(dia, i));
   </script>
   
-</body>
+</body> <!-- ========================================================== --> 
 
 
   
