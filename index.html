@@ -65,7 +65,7 @@
   <table>
     <thead> <!-- Table Head, definimos el nombre de las filas --> 
       <tr> <!-- Table Row --> 
-        <th>Día</th>
+        <th>---</th>
         <th>Entrada</th>
         <th>Salida</th>
         <th>Horas trabajadas</th>
@@ -78,13 +78,13 @@
   </table>
 
   <div class="summary" id="resumen">
-    Total semanal: 0.00 hrs<br>
-    Te faltan: 40.00 hrs para llegar a 40
+    Total de Horas: 0.00 hrs<br>
+    Faltan: 40.00 hrs para llegar a 40
   </div>
 
   
-  <script>
-    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
+  <script> 
+    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; /*<!-- Lista de dias -->*/ 
     const tabla = document.getElementById("tabla");
     const resumen = document.getElementById("resumen");
 
@@ -100,14 +100,14 @@
       const entrada = document.createElement("input");
       entrada.type = "time";
       entrada.id = `entrada-${i}`;
-      entrada.oninput = calcularTodo;
+      entrada.oninput = calcularTodo; /*Llama a una funcion*/
       tdEntrada.appendChild(entrada);
 
       const tdSalida = document.createElement("td");
       const salida = document.createElement("input");
       salida.type = "time";
       salida.id = `salida-${i}`;
-      salida.oninput = calcularTodo;
+      salida.oninput = calcularTodo; /*Llama a una funcion*/
       tdSalida.appendChild(salida);
 
       const tdHoras = document.createElement("td");
@@ -128,7 +128,8 @@
     {
       let total = 0;
 
-      for (let i = 0; i < dias.length; i++) {
+      for (let i = 0; i < dias.length; i++) /*Recorren todos los dias*/
+      {
         const entrada = document.getElementById(`entrada-${i}`).value;
         const salida = document.getElementById(`salida-${i}`).value;
         const tdHoras = document.getElementById(`horas-${i}`);
@@ -150,7 +151,7 @@
       const faltan = Math.max(0, 40 - total);
       resumen.innerHTML = `
         Total semanal: ${total.toFixed(2)} hrs<br>
-        ${faltan === 0 ? "¡Ya cumpliste tus 40 horas! 🎉" : `Te faltan: ${faltan.toFixed(2)} hrs para llegar a 40`}
+        ${faltan === 0 ? "Listo, Huye! 🎉" : `Te faltan: ${faltan.toFixed(2)} hrs para llegar a 40`}
       `;
     }
 
