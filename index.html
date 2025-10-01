@@ -138,7 +138,7 @@
           const [eh, em] = entrada.split(":").map(Number);
           const [sh, sm] = salida.split(":").map(Number);
 
-          let horas = (sh + sm / 60) - (eh + em / 60) - 1; // -1 por comida
+          let horas = (sh + sm / 60) - (eh + em / 60) - 0.5; // -1 por comida
 
           horas = Math.max(0, horas);
           tdHoras.textContent = horas.toFixed(2);
