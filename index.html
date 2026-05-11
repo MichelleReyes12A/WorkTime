@@ -120,8 +120,8 @@
       const comida = document.createElement("input");
       comida.type = "number";
       comida.id = `comida-${i}`;
-      comida.value = 0.5; // Valor inicial
-      comida.step = "0.1"; // Permite decimales
+      comida.value = 0.50; // Valor inicial
+      comida.step = "0.25"; // Permite decimales
       comida.min = "0";    // No permitir negativos
       comida.oninput = calcularTodo; // Para recalcular si cambia
       tdComida.appendChild(comida);
