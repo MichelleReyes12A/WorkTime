@@ -68,7 +68,7 @@
         <th>---</th>
         <th>Entrada</th>
         <th>Salida</th>
-        <th>Comida (?)</th>
+        <th>Comida</th>
         <th>Horas trabajadas</th>
         
       </tr>
@@ -111,7 +111,6 @@
       const salida = document.createElement("input");
       salida.type = "time";
       salida.id = `salida-${i}`;
-      salida.value = "18:00";
       salida.oninput = calcularTodo; /*Llama a una funcion*/
       tdSalida.appendChild(salida);
 
