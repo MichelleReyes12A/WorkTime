@@ -68,6 +68,7 @@
         <th>---</th>
         <th>Entrada</th>
         <th>Salida</th>
+        <th>Comida (?)</th>
         <th>Horas trabajadas</th>
         
       </tr>
@@ -101,17 +102,31 @@
       const entrada = document.createElement("input");
       entrada.type = "time";
       entrada.id = `entrada-${i}`;
+      entrada.value = new Date().toISOString().substring(11, 16);//"07:00"; // Valor por defecto
       entrada.oninput = calcularTodo; /*Llama a una funcion*/
       tdEntrada.appendChild(entrada);
-      tdEntrada.textContent = "07:00AM";
+
 
       const tdSalida = document.createElement("td");
       const salida = document.createElement("input");
       salida.type = "time";
       salida.id = `salida-${i}`;
+      salida.value = "18:00";
       salida.oninput = calcularTodo; /*Llama a una funcion*/
       tdSalida.appendChild(salida);
 
+
+      const tdComida = document.createElement("td");
+      const comida = document.createElement("input");
+      comida.type = "number";
+      comida.id = `comida-${i}`;
+      comida.value = 0.5; // Valor inicial
+      comida.step = "0.1"; // Permite decimales
+      comida.min = "0";    // No permitir negativos
+      comida.oninput = calcularTodo; // Para recalcular si cambia
+      tdComida.appendChild(comida);
+      
+      
       const tdHoras = document.createElement("td");
       tdHoras.id = `horas-${i}`;
       tdHoras.textContent = "0.00";
@@ -119,6 +134,7 @@
       tr.appendChild(tdDia);
       tr.appendChild(tdEntrada);
       tr.appendChild(tdSalida);
+      tr.appendChild(tdComida);
       tr.appendChild(tdHoras);
 
       tabla.appendChild(tr);
@@ -134,13 +150,14 @@
       {
         const entrada = document.getElementById(`entrada-${i}`).value;
         const salida = document.getElementById(`salida-${i}`).value;
+        const comida = document.getElementById(`comida-${i}`).value;
         const tdHoras = document.getElementById(`horas-${i}`);
 
         if (entrada && salida) {
           const [eh, em] = entrada.split(":").map(Number);
           const [sh, sm] = salida.split(":").map(Number);
 
-          let horas = (sh + sm / 60) - (eh + em / 60) - 0.5; // -1 por comida
+          let horas = (sh + sm / 60) - (eh + em / 60) - comida; // -1 por comida
 
           horas = Math.max(0, horas);
           tdHoras.textContent = horas.toFixed(2);
