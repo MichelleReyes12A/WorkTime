@@ -69,6 +69,7 @@
         <th>Entrada</th>
         <th>Salida</th>
         <th>Horas trabajadas</th>
+        
       </tr>
     </thead>
     
@@ -102,6 +103,7 @@
       entrada.id = `entrada-${i}`;
       entrada.oninput = calcularTodo; /*Llama a una funcion*/
       tdEntrada.appendChild(entrada);
+      tdEntrada.textContent = "07:00AM";
 
       const tdSalida = document.createElement("td");
       const salida = document.createElement("input");
