@@ -102,7 +102,7 @@
       const entrada = document.createElement("input");
       entrada.type = "time";
       entrada.id = `entrada-${i}`;
-      entrada.value = new Date().toISOString().substring(11, 16);//"07:00"; // Valor por defecto
+      entrada.value = "07:00"; // Valor por defecto
       entrada.oninput = calcularTodo; /*Llama a una funcion*/
       tdEntrada.appendChild(entrada);
 
