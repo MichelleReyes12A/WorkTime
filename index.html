@@ -169,15 +169,15 @@
       const faltan = Math.max(0, 40 - total);
       resumen.innerHTML = `
         Total semanal: ${total.toFixed(2)} hrs<br>
-        ${faltan === 0 ? "Listo, Huye! 🎉" : `Solo ${faltan.toFixed(2)} hrs para SALIRR DE LA MISERIA!`}
+        ${faltan === 0 ? "Listo, Huye! 🎉" 
+          <img src="https://media1.tenor.com/m/XpXWABMIkMoAAAAC/pato-baile.gif">
+          : `Solo ${faltan.toFixed(2)} hrs para SALIRR DE LA MISERIA!`}
       `;
     }
 
     // Inicializar tabla
     dias.forEach((dia, i) => crearFila(dia, i));
   </script>
-
-<img src="https://media1.tenor.com/m/XpXWABMIkMoAAAAC/pato-baile.gif">
 
   
 </body> <!-- ========================================================== --> 
