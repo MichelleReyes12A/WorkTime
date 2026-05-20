@@ -8,6 +8,11 @@
   <title>Horas de Miseria</title> <!-- Nombre de la pagina -->
   
   <style> /*<!-- ------------------------------ -->*/
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap" rel="stylesheet">
+    
     body 
     {
       font-family: Georgia, serif;
@@ -22,6 +27,15 @@
     h1 
     {
       text-align: center;
+      font-family: "Bitcount Prop Single", system-ui;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
+      font-variation-settings:
+        "slnt" 0,
+        "CRSV" 0.5,
+        "ELSH" 0,
+        "ELXP" 0;
     }
     
     table 
@@ -173,10 +187,10 @@
             ? `Listo, Huye! 🎉 <br><img src="https://media1.tenor.com/m/XpXWABMIkMoAAAAC/pato-baile.gif" style="max-width:200px;">`
             : `Solo faltan 40 años y ${faltan.toFixed(2)} hrs para SALIR DE LA MISERIA!`}
       `;
-      if (faltan === 0 && confirm('Quieres donarme? (porfi :C)'))
-      {
-        alert("Paypal: gatita_chili@hotmail.com");
-      }
+     // if (faltan === 0 && confirm('Quieres donarme? (porfi :C)'))
+      //{
+        //alert("Paypal: gatita_chili@hotmail.com");
+      //}
     }
 
     // Inicializar tabla
