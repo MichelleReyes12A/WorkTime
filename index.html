@@ -68,6 +68,11 @@
         grid-template-columns: 15% 70% 15%; /* Proporciones: 2 - 3 - 1 */
         min-height: 50vh;
     }
+
+    #fecha, #hora {
+        font-size: 1rem;
+        margin: 5px 0;
+    }
     
     
     /* ================================== STYLE ====================================== */
@@ -81,137 +86,174 @@
 
 
   <main id="contenido">
-        <div class="columna izquierda"> HOLA? </div>
+        <div class="columna izquierda">  </div>
         
         <div class="columna centro">
 
-  <h1>Simulador de Horas de Explotación</h1>
-
-  <table>
-    <thead> <!-- Table Head, definimos el nombre de las filas --> 
-      <tr> <!-- Table Row --> 
-        <th>---</th>
-        <th>Entrada</th>
-        <th>Salida</th>
-        <th>Comida</th>
-        <th>Horas trabajadas</th>
-        
-      </tr>
-    </thead>
-    
-    <tbody id="tabla">
-      <!-- Las filas se generan con JS -->
-    </tbody>
-  </table>
-
-  <div class="summary" id="resumen">
-    Total de Horas: 0.00 hrs<br>
-    Faltan: 40.00 hrs para llegar a 40
-  </div>
-
-  
-  <script> 
-    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; /*<!-- Lista de dias -->*/ 
-    const tabla = document.getElementById("tabla");
-    const resumen = document.getElementById("resumen");
-
-
-    
-    function crearFila(dia, i) 
-    {
-      const tr = document.createElement("tr");
-      const tdDia = document.createElement("td");
-      tdDia.textContent = dia;
-
-      const tdEntrada = document.createElement("td");
-      const entrada = document.createElement("input");
-      entrada.type = "time";
-      entrada.id = `entrada-${i}`;
-      entrada.value = "07:00"; // Valor por defecto
-      entrada.oninput = calcularTodo; /*Llama a una funcion*/
-      tdEntrada.appendChild(entrada);
-
-
-      const tdSalida = document.createElement("td");
-      const salida = document.createElement("input");
-      salida.type = "time";
-      salida.id = `salida-${i}`;
-      salida.oninput = calcularTodo; /*Llama a una funcion*/
-      tdSalida.appendChild(salida);
-
-
-      const tdComida = document.createElement("td");
-      const comida = document.createElement("input");
-      comida.type = "number";
-      comida.id = `comida-${i}`;
-      comida.value = 0.50; // Valor inicial
-      comida.step = "0.25"; // Permite decimales
-      comida.min = "0";    // No permitir negativos
-      comida.oninput = calcularTodo; // Para recalcular si cambia
-      tdComida.appendChild(comida);
-      
-      
-      const tdHoras = document.createElement("td");
-      tdHoras.id = `horas-${i}`;
-      tdHoras.textContent = "0.00";
-
-      tr.appendChild(tdDia);
-      tr.appendChild(tdEntrada);
-      tr.appendChild(tdSalida);
-      tr.appendChild(tdComida);
-      tr.appendChild(tdHoras);
-
-      tabla.appendChild(tr);
-    }
-
-
-    
-    function calcularTodo() 
-    {
-      let total = 0;
-
-      for (let i = 0; i < dias.length; i++) /*Recorren todos los dias*/
-      {
-        const entrada = document.getElementById(`entrada-${i}`).value;
-        const salida = document.getElementById(`salida-${i}`).value;
-        const comida = document.getElementById(`comida-${i}`).value;
-        const tdHoras = document.getElementById(`horas-${i}`);
-
-        if (entrada && salida) {
-          const [eh, em] = entrada.split(":").map(Number);
-          const [sh, sm] = salida.split(":").map(Number);
-
-          let horas = (sh + sm / 60) - (eh + em / 60) - comida; // -1 por comida
-
-          horas = Math.max(0, horas);
-          tdHoras.textContent = horas.toFixed(2);
-          total += horas;
-        } else {
-          tdHoras.textContent = "0.00";
-        }
-      }
-
-      const faltan = Math.max(0, 40 - total);
-      resumen.innerHTML = `
-        Total semanal: ${total.toFixed(2)} hrs<br>
-        ${faltan === 0 
-            ? `Listo, Huye! 🎉 <br><img src="https://media1.tenor.com/m/XpXWABMIkMoAAAAC/pato-baile.gif" style="max-width:200px;">`
-            : `Solo faltan 40 años y ${faltan.toFixed(2)} hrs para SALIR DE LA MISERIA!`}
-      `;
-     // if (faltan === 0 && confirm('Quieres donarme? (porfi :C)'))
-      //{
-        //alert("Paypal: gatita_chili@hotmail.com");
-      //}
-    }
-
-    // Inicializar tabla
-    dias.forEach((dia, i) => crearFila(dia, i));    
-  </script>
+            <h1>Simulador de Horas de Explotación</h1>
+          
+            <table>
+              <thead> <!-- Table Head, definimos el nombre de las filas --> 
+                <tr> <!-- Table Row --> 
+                  <th>---</th>
+                  <th>Entrada</th>
+                  <th>Salida</th>
+                  <th>Comida</th>
+                  <th>Horas trabajadas</th>
+                  
+                </tr>
+              </thead>
+              
+              <tbody id="tabla">
+                <!-- Las filas se generan con JS -->
+              </tbody>
+            </table>
+          
+            <div class="summary" id="resumen">
+              Total de Horas: 0.00 hrs<br>
+              Faltan: 40.00 hrs para llegar a 40
+            </div>
+          
+            
+            <script> 
+              const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; /*<!-- Lista de dias -->*/ 
+              const tabla = document.getElementById("tabla");
+              const resumen = document.getElementById("resumen");
+          
+          
+              
+              function crearFila(dia, i) 
+              {
+                const tr = document.createElement("tr");
+                const tdDia = document.createElement("td");
+                tdDia.textContent = dia;
+          
+                const tdEntrada = document.createElement("td");
+                const entrada = document.createElement("input");
+                entrada.type = "time";
+                entrada.id = `entrada-${i}`;
+                entrada.value = "07:00"; // Valor por defecto
+                entrada.oninput = calcularTodo; /*Llama a una funcion*/
+                tdEntrada.appendChild(entrada);
+          
+          
+                const tdSalida = document.createElement("td");
+                const salida = document.createElement("input");
+                salida.type = "time";
+                salida.id = `salida-${i}`;
+                salida.oninput = calcularTodo; /*Llama a una funcion*/
+                tdSalida.appendChild(salida);
+          
+          
+                const tdComida = document.createElement("td");
+                const comida = document.createElement("input");
+                comida.type = "number";
+                comida.id = `comida-${i}`;
+                comida.value = 0.50; // Valor inicial
+                comida.step = "0.25"; // Permite decimales
+                comida.min = "0";    // No permitir negativos
+                comida.oninput = calcularTodo; // Para recalcular si cambia
+                tdComida.appendChild(comida);
+                
+                
+                const tdHoras = document.createElement("td");
+                tdHoras.id = `horas-${i}`;
+                tdHoras.textContent = "0.00";
+          
+                tr.appendChild(tdDia);
+                tr.appendChild(tdEntrada);
+                tr.appendChild(tdSalida);
+                tr.appendChild(tdComida);
+                tr.appendChild(tdHoras);
+          
+                tabla.appendChild(tr);
+              }
+          
+          
+              
+              function calcularTodo() 
+              {
+                let total = 0;
+          
+                for (let i = 0; i < dias.length; i++) /*Recorren todos los dias*/
+                {
+                  const entrada = document.getElementById(`entrada-${i}`).value;
+                  const salida = document.getElementById(`salida-${i}`).value;
+                  const comida = document.getElementById(`comida-${i}`).value;
+                  const tdHoras = document.getElementById(`horas-${i}`);
+          
+                  if (entrada && salida) {
+                    const [eh, em] = entrada.split(":").map(Number);
+                    const [sh, sm] = salida.split(":").map(Number);
+          
+                    let horas = (sh + sm / 60) - (eh + em / 60) - comida; // -1 por comida
+          
+                    horas = Math.max(0, horas);
+                    tdHoras.textContent = horas.toFixed(2);
+                    total += horas;
+                  } else {
+                    tdHoras.textContent = "0.00";
+                  }
+                }
+          
+                const faltan = Math.max(0, 40 - total);
+                resumen.innerHTML = `
+                  Total semanal: ${total.toFixed(2)} hrs<br>
+                  ${faltan === 0 
+                      ? `Listo, Huye! 🎉 <br><img src="https://media1.tenor.com/m/XpXWABMIkMoAAAAC/pato-baile.gif" style="max-width:200px;">`
+                      : `Solo faltan 40 años y ${faltan.toFixed(2)} hrs para SALIR DE LA MISERIA!`}
+                `;
+               // if (faltan === 0 && confirm('Quieres donarme? (porfi :C)'))
+                //{
+                  //alert("Paypal: gatita_chili@hotmail.com");
+                //}
+              }
+          
+              // Inicializar tabla
+              dias.forEach((dia, i) => crearFila(dia, i));    
+            </script>
 
           
         </div>
 
-        <div class="columna derecha"> Aqui va el gif</div>
+        <div class="columna derecha"> <br> Proximos cumpleaños: <br> 
+          <ul>
+            <li>Betty: 21 de Junio</li>
+            <li>Cynthia: 4 de Noviembre</li>
+            <li>Mich: 26 de diceimbre</li>
+            <li>Cris: 6 de marzo</li>
+          </ul>
+
+              <h2>Fecha y hora actual</h2>
+              <div id="fecha"></div>
+              <div id="hora"></div>
+              
+              <script>
+                  // Función para actualizar fecha y hora
+                  function actualizarFechaHora() {
+                      const ahora = new Date();
+              
+                      // Opciones para formato de fecha
+                      const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                      const fechaFormateada = ahora.toLocaleDateString('es-ES', opcionesFecha);
+              
+                      // Opciones para formato de hora
+                      const opcionesHora = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                      const horaFormateada = ahora.toLocaleTimeString('es-ES', opcionesHora);
+              
+                      // Mostrar en HTML
+                      document.getElementById('fecha').textContent = fechaFormateada;
+                      document.getElementById('hora').textContent = horaFormateada;
+                  }
+              
+                  // Actualizar inmediatamente al cargar
+                  actualizarFechaHora();
+              
+                  // Actualizar cada segundo
+                  setInterval(actualizarFechaHora, 1000);
+              </script>
+          
+        </div>
 
     </main>
 
