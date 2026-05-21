@@ -65,7 +65,7 @@
     main {
         flex-wrap: wrap; /* Permite que se acomode en pantallas pequeñas */ 
         display: grid;
-        grid-template-columns: 1fr 4fr 1fr; /* Proporciones: 2 - 3 - 1 */
+        grid-template-columns: 15% 70% 15%; /* Proporciones: 2 - 3 - 1 */
         min-height: 50vh;
     }
     
@@ -195,7 +195,7 @@
       resumen.innerHTML = `
         Total semanal: ${total.toFixed(2)} hrs<br>
         ${faltan === 0 
-            ? `Listo, Huye! 🎉 <br><img src="cumple.gif" style="max-width:200px;">`
+            ? `Listo, Huye! 🎉 <br><img src="https://media1.tenor.com/m/XpXWABMIkMoAAAAC/pato-baile.gif" style="max-width:200px;">`
             : `Solo faltan 40 años y ${faltan.toFixed(2)} hrs para SALIR DE LA MISERIA!`}
       `;
      // if (faltan === 0 && confirm('Quieres donarme? (porfi :C)'))
