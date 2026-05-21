@@ -9,11 +9,13 @@
   
   <style> /* ================================== STYLE ====================================== */
     @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
 
     body 
     {
-      font-family: Georgia, serif;
-      font-style: italic;
+      font-family: "Square Peg", cursive;
+      font-weight: 400;
+      font-style: normal;
       padding: 2rem;
       background-color: #000000; /*<!-- Color hexadecimal NEGRO -->*/
       color: #FFFFFF;
@@ -71,7 +73,7 @@
 
     #fecha, #hora {
         font-size: 0.5rem;
-        margin: 25px 0;
+        margin: 5px 0;
     }
     
     
@@ -216,7 +218,7 @@
           
         </div>
 
-        <div class="columna derecha"> <br> Proximos cumpleaños: <br> 
+        <div class="columna derecha">
 
               <div id="fecha"></div>
               <div id="hora"></div>
@@ -246,6 +248,7 @@
                   setInterval(actualizarFechaHora, 1000);
               </script>
           
+          <br> Proximos cumpleaños: <br> 
             <ul>
               <li>Betty: 21-Jun</li>
               <li>Cynthia: 4-Nov</li>
