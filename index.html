@@ -2,12 +2,12 @@
 <html lang="es">
 
   
-<head>
+<head> <!-- ================================= HEAD ================================= -->
   <meta charset="UTF-8"> <!-- Caracteres de la pagina, acentos, ñ, simbolos -->
   <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ajuste de vista, tamano -->
   <title>Horas de Miseria</title> <!-- Nombre de la pagina -->
   
-  <style> /*<!-- ------------------------------ -->*/
+  <style> /* ================================== STYLE ====================================== */
     @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single&display=swap');
 
     body 
@@ -28,7 +28,7 @@
       font-optical-sizing: auto;
       font-weight: 270;
       font-style: normal;
-      font-size: 4rem;
+      font-size: 3rem;
     }
     
     table 
@@ -60,13 +60,31 @@
       border-radius: 8px;
       box-shadow: 0 0 6px rgba(0,0,0,0.1);
     }
+
+        /* ===== Layout principal =-------------------------------------==== */
+    main {
+        flex-wrap: wrap; /* Permite que se acomode en pantallas pequeñas */ 
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr; /* Proporciones: 2 - 3 - 1 */
+        min-height: 70vh;
+    }
+    
+    
+    /* ================================== STYLE ====================================== */
   </style> 
   
-</head>
+</head> <!-- ================================= HEAD ================================= -->
 
 
   
-<body> <!-- ======================================================================== --> 
+<body> <!-- ================================== BODY ====================================== --> 
+
+
+  <main id="contenido">
+        <div class="columna izquierda"> </div>
+        
+        <div class="columna centro">
+
   <h1>Simulador de Horas de Explotación</h1>
 
   <table>
@@ -190,8 +208,14 @@
     dias.forEach((dia, i) => crearFila(dia, i));    
   </script>
 
-  
-</body> <!-- ========================================================== --> 
+          
+        </div>
+
+        <div class="columna derecha"> </div>
+
+    </main>
+
+</body> <!-- ================================== BODY ====================================== -->  
 
 
   
