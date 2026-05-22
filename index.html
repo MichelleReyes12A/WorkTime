@@ -79,6 +79,10 @@
     ul {
       font-size: 1rem;
     }
+    .hoy {
+        background-color: yellow;
+        font-weight: bold;
+    }
     
     
     /* ================================== STYLE ====================================== */
@@ -244,12 +248,32 @@
                       document.getElementById('fecha').textContent = fechaFormateada;
                       document.getElementById('hora').textContent = horaFormateada;
                   }
+
+
+
+                 function actualizarDia() {
+    
+                    // Obtener el día actual (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
+                    const hoy = new Date().getDay();
+                
+                    // Mapeo para que coincida con el orden de la tabla (Lunes=1, Domingo=0)
+                    // En nuestra tabla, la primera fila de datos es Lunes, que corresponde a getDay() = 1
+                    const indiceFila = hoy === 0 ? 7 : hoy; // Si es domingo (0), será la última fila (7)
+                
+                    // Seleccionar la tabla
+                    const tabla = document.getElementById("tabla-dias");
+                
+                    // Resaltar la fila correspondiente
+                    tabla.rows[indiceFila].classList.add("hoy");
+                   
+                 }
               
                   // Actualizar inmediatamente al cargar
                   actualizarFechaHora();
-              
+                  actualizarDia();
                   // Actualizar cada segundo
                   setInterval(actualizarFechaHora, 1000);
+                  setInterval(actualizarDia, 21600000); //cada 6h, creo
               </script> <br>
           
           <br> Proximos cumpleaños: <br> 
