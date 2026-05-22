@@ -248,12 +248,10 @@
                       // Mostrar en HTML
                       document.getElementById('fecha').textContent = fechaFormateada;
                       document.getElementById('hora').textContent = horaFormateada;
-                  }
 
 
 
-                 function actualizarDia() {
-    
+
                     // Obtener el día actual (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
                     const hoy = new Date().getDay();
                 
@@ -266,12 +264,14 @@
                 
                     // Resaltar la fila correspondiente
                     tabla.rows[indiceFila].classList.add("hoy");
-                   
-                 }
+                  }
+
+
+
+
               
                   // Actualizar inmediatamente al cargar
                   actualizarFechaHora();
-                  actualizarDia();
                   // Actualizar cada segundo
                   setInterval(actualizarFechaHora, 1000);
               </script> <br>
