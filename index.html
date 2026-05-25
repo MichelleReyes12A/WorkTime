@@ -258,6 +258,16 @@
           
               // Inicializar tabla
               dias.forEach((dia, i) => crearFila(dia, i));    
+
+
+
+              const filas = document.querySelectorAll("#tabla tr");
+              filas.forEach(fila => {
+                if (fila.textContent.includes("Martes")) {
+                  fila.style.backgroundColor = "pink";
+                }
+              });
+              
             </script>
 
           
