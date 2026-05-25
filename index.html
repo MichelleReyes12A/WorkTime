@@ -164,7 +164,7 @@
           
             
             <script> 
-              const dias = ["lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; /*<!-- Lista de dias -->*/ 
+              const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; /*<!-- Lista de dias -->*/ 
               const tabla = document.getElementById("tabla");
               const resumen = document.getElementById("resumen");
           
@@ -264,7 +264,7 @@
 
               const filas = document.querySelectorAll("#tabla tr");
               filas.forEach(fila => {
-                if (fila.textContent.includes(${hoy})) {
+                if (fila.textContent.includes(#hoy)) {
                   fila.style.backgroundColor = "pink";
                 }
               });
