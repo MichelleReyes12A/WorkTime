@@ -99,10 +99,9 @@
 
   <main id="contenido">
 
-                  <div id="hoy"></div>
     
         <div class="columna izquierda"> 
-
+              <div id="hoy"></div>
               <div id="fecha"></div>
               <div id="hora"></div>
           
@@ -265,7 +264,7 @@
 
               const filas = document.querySelectorAll("#tabla tr");
               filas.forEach(fila => {
-                if (fila.textContent.includes("Martes")) {
+                if (fila.textContent.includes("$hoy")) {
                   fila.style.backgroundColor = "pink";
                 }
               });
