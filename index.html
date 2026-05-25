@@ -261,6 +261,9 @@
               dias.forEach((dia, i) => crearFila(dia, i));    
 
 
+                const hoy = new Date().getDay();
+                const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+                const diaSemana = diasSemana[hoy];
 
               const filas = document.querySelectorAll("#tabla tr");
               filas.forEach(fila => {
