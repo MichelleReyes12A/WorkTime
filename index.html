@@ -314,9 +314,10 @@
         
         // Día 0 del mes siguiente → último día del mes actual
         const ultimoDia = new Date(year, mes + 1, 0).getDate();
+        const paga = ultimoDia - hoy.getDate();
         
         document.getElementById("res").innerText =
-            `El mes ${mes + 1} del año ${year} tiene ${ultimoDia} días.`;
+            `Faltan ${ultimoDia} días para que paguen`;
 
       </script>
         
