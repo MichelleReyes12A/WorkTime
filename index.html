@@ -54,7 +54,7 @@
       padding: 0.3rem;
     }
     
-    .summary /*<!-- Estilo de la caja de salida -->*/ 
+    .summary, fecha /*<!-- Estilo de la caja de salida -->*/ 
     { 
       margin-top: 2rem;
       padding: 1rem;
@@ -256,7 +256,7 @@
               // Inicializar tabla
               dias.forEach((dia, i) => crearFila(dia, i));    
 
-
+              function actualizarDia() {
                 const hoy = new Date().getDay();
                 const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
                 const diaSemana = diasSemana[hoy];
@@ -267,7 +267,11 @@
                   fila.style.backgroundColor = "pink";
                 }
               });
-              
+              }
+
+
+              actualizarDia();
+              setInterval(actualizarDia, 21600); //cada 6 horas
             </script>
 
           
