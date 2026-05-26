@@ -109,10 +109,7 @@
                   // Función para actualizar fecha y hora
                       function actualizarFechaHora() {
                       const ahora = new Date();
-                      const hoy = ahora.getDay();
-
-                      const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-                      const diaSemana = diasSemana[hoy];
+                     
               
                       // Opciones para formato de fecha
                       const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -125,7 +122,6 @@
                       // Mostrar en HTML
                       document.getElementById('fecha').textContent = fechaFormateada;
                       document.getElementById('hora').textContent = horaFormateada;
-                      document.getElementById('hoy').textContent = `Hoy es ${diaSemana}`;
                   }
 
                   // Actualizar inmediatamente al cargar
