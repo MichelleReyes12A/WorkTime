@@ -307,32 +307,36 @@
       <p id="res"></p>
       
       <script>
-      
-        const hoy1 = new Date();
-        const year = hoy1.getFullYear();
-        const mes = hoy1.getMonth(); // 0 = enero, 11 = diciembre
-        let fechaNum=15;
-        let Q;
-        
-        
-        if (hoy1.getDate() <= 15 )     
+
+        function actualizarPaga()
         {
-            Q = new Date(year, mes, 15); //fecha completa del 15
-        }else
-        {
-            Q = new Date(year, mes + 1, 0); //fecha completa del ult dia
-            fechaNum = Q.getDate(); //1-31
+          const hoy1 = new Date();
+          const year = hoy1.getFullYear();
+          const mes = hoy1.getMonth(); // 0 = enero, 11 = diciembre
+          let fechaNum=15;
+          let Q;
+          
+          if (hoy1.getDate() <= 15 )     
+          {
+              Q = new Date(year, mes, 15); //fecha completa del 15
+          }else
+          {
+              Q = new Date(year, mes + 1, 0); //fecha completa del ult dia
+              fechaNum = Q.getDate(); //1-31
+          }
+          
+          const fechaSemana = Q.getDay(); //(0 = domingo, 6 = sábado)
+          
+          if (fechaSemana === 0) {fechaNum -= 2;}
+          else if (fechaSemana === 6) {fechaNum--;}
+          
+          const paga = fechaNum - hoy1.getDate();
+          
+          document.getElementById("res").innerText =
+              `Faltan ${paga} días para que paguen`;
         }
-        
-        const fechaSemana = Q.getDay(); //(0 = domingo, 6 = sábado)
-        
-        if (fechaSemana === 0) {fechaNum -= 2;}
-        else if (fechaSemana === 6) {fechaNum--;}
-        
-        const paga = fechaNum - hoy1.getDate();
-        
-        document.getElementById("res").innerText =
-            `Faltan ${paga} días para que paguen`;
+
+        setInterval(actualizarPaga, 21600000‬);
 
       </script>
         
