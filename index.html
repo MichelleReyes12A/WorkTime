@@ -298,6 +298,8 @@
               <li>Mich: 26-Dec</li>
               <li>Cris: 6-Mar</li>
           </ul>
+
+          <div id="cumples"></div>
           
         </div>
 
@@ -335,10 +337,18 @@
           
           document.getElementById("res").innerText =
               `Faltan ${paga} días para que paguen`;
+          
+          switch(mes)
+            {
+              case 4:
+                document.getElementById("cumples").innerHTML = '<img src="cumple.gif">';
+                  break;
+            }
+          
         }
         
         actualizarPaga();
-        setInterval(actualizarPaga, 21600000);
+        setInterval(actualizarPaga, 21600000); //cada 6h
 
       </script>
         
