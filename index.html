@@ -101,6 +101,18 @@
       text-align: center;
     }
 
+    .iframe-container {
+        width: 430px;   /* tamaño visible */
+        height: 450px;
+        overflow: hidden; /* oculta scroll extra */
+        border: 1px solid #ccc;
+    }
+    .iframe-container iframe {
+        width: 165%;
+        height: 168%;
+        transform: scale(0.6); /* 80% del tamaño original */
+        transform-origin: 0 0; /* escala desde la esquina superior izquierda */
+    }
     
     /* ================================== STYLE ====================================== */
   </style> 
@@ -376,7 +388,14 @@
         setInterval(actualizarPaga, 21600000); //cada 6h
 
       </script>
-        
+
+
+      <h2>Checate las novedades!</h2>   
+      <h4>(Actualizaciones cada semana)</h4>
+        <div class="iframe-container">
+            <iframe src="https://bizbubble.my.canva.site/crying-in-glitter/" frameborder="0"></iframe>
+        </div>  
+      
     </footer>
 
 </body> <!-- ================================== BODY ====================================== -->  
