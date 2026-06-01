@@ -6,116 +6,13 @@
   <meta charset="UTF-8"> <!-- Caracteres de la pagina, acentos, ñ, simbolos -->
   <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ajuste de vista, tamano -->
   <title>Horas de Miseria</title> <!-- Nombre de la pagina -->
-  
-  <style> /* ================================== STYLE ====================================== */
-    @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
-
-    body 
-    {
-      font-family: "Square Peg", cursive;
-      font-weight: 400;
-      font-style: normal;
-      font-size: 1.5rem;
-      padding: 3rem;
-      background-color: #000000; /*<!-- Color hexadecimal NEGRO -->*/
-      color: #FFFFFF;
-      max-width: 1000px; /*<!-- Ancho maximo de la pantalla -->*/
-      margin: auto;
-    }
-    
-    h1 
-    {
-      text-align: center;
-      font-family: "Bitcount Prop Single", system-ui;
-      font-optical-sizing: auto;
-      font-weight: 270;
-      font-style: normal;
-      font-size: 3rem;
-    }
-    
-    table 
-    {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    
-    th, td /*<!-- Estilos de celdas --> */
-    {
-      border: 1px solid #ddd; 
-      padding: 0.5rem;
-      text-align: center;
-    }
-    
-    input[type="time"] /*<!-- Estilo de entrada de datos de tiempo --> */
-    {
-      width: 90%;
-      padding: 0.3rem;
-    }
-    
-    .summary /*<!-- Estilo de la caja de salida -->*/ 
-    { 
-      margin-top: 2rem;
-      padding: 1rem;
-      background: #fff;
-      color: #000000;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
-    }
-
-        /* ===== Layout principal =-------------------------------------==== */
-    main {
-        flex-wrap: wrap; /* Permite que se acomode en pantallas pequeñas */ 
-        display: grid;
-        grid-template-columns: 15% 70% 15%; /* Proporciones: 2 - 3 - 1 */
-        min-height: 50vh;
-    }
-
-    #hora {
-        font-size: 1rem;
-        margin: 5px 0;
-    }
-     #fecha{
-        font-size: 1.5rem;
-        font-weight: 500;
-        margin: 10px 0;
-        margin-top: 2rem;
-        padding: 1rem;
-        background: #FFFFFF;
-        color: #000000;
-        border-radius: 8px;
-        box-shadow: 0 0 6px rgba(0,0,0,0.1);
-    }
-    ul {
-      font-size: 1rem;
-      margin: 10px;
-    }
-    #cumples{
-      margin-left:1rem;
-      font-size: 1rem;
-    }
-
-    footer {
-      margin-top: 1.5rem;
-      text-align: center;
-    }
-
-
-    
-    /* ================================== STYLE ====================================== */
-  </style> 
-  
+  <link rel="stylesheet" href="style.css">  <!-- Style -->
 </head> <!-- ================================= HEAD ================================= -->
 
 
   
 <body> <!-- ================================== BODY ====================================== --> 
-
-
   <main id="contenido">
-
-    
         <div class="columna izquierda"> 
               <div id="hoy"></div>
               <div id="fecha"></div>
@@ -123,14 +20,12 @@
           
               <script>
                   // Función para actualizar fecha y hora
-                      function actualizarFechaHora() {
-                      const ahora = new Date();
-                     
-              
+                function actualizarFechaHora() 
+                {
+                      const ahora = new Date();     
                       // Opciones para formato de fecha
                       const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                       const fechaFormateada = ahora.toLocaleDateString('es-ES', opcionesFecha);
-              
                       // Opciones para formato de hora
                       const opcionesHora = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
                       const horaFormateada = ahora.toLocaleTimeString('es-ES', opcionesHora);
@@ -139,33 +34,27 @@
                       document.getElementById('fecha').textContent = fechaFormateada;
                       document.getElementById('hora').textContent = horaFormateada;
                   }
-
-                  // Actualizar inmediatamente al cargar
-                  actualizarFechaHora();
-                  // Actualizar cada segundo
-                  setInterval(actualizarFechaHora, 1000);
+                  actualizarFechaHora(); // Actualizar inmediatamente al cargar
+                  setInterval(actualizarFechaHora, 1000); // Actualizar cada segundo
               </script> 
+
           
-          <br>
-          Andale, doname! (:
-          <br>
-          <img src="QR.jpeg" style="max-width:130px;">
-          <br>
+              <br>Andale, doname! (: <br>
+              <img src="QR.jpeg" style="max-width:130px;"><br>
+              
+              
+              <br>
+              <div style="border: 2px solid #ccc; padding: 5px; border-radius: 5px; text-align: center; max-width: 400px; margin-right: 10px;">
+                  <h5>Checate las novedades!</h5>
+                  <h6>(Actualizaciones cada semana)</h6>
+                  <a href="https://bizbubble.my.canva.site/crying-in-glitter/" target="_blank" style="display: inline-block; padding: 3px 25px; background-color: pink; color: white; text-decoration: none; border-radius: 4px;">
+                      Click
+                  </a>
+              </div>
+        </div> <!-- Columna izquierda -->
 
-
-          <br>
-          <div style="border: 2px solid #ccc; padding: 5px; border-radius: 5px; text-align: center; max-width: 400px; margin-right: 10px;">
-            <h5>Checate las novedades!</h5>
-            <h6>(Actualizaciones cada semana)</h6>
-            <a href="https://bizbubble.my.canva.site/crying-in-glitter/" target="_blank" style="display: inline-block; padding: 3px 25px; background-color: pink; color: white; text-decoration: none; border-radius: 4px;">
-                Click
-            </a>
-        </div>
-
-        </div>
-        
+    
         <div class="columna centro">
-
             <h1>Simulador de Horas de Explotación</h1>
           
             <table>
@@ -175,13 +64,12 @@
                   <th>Entrada</th>
                   <th>Salida</th>
                   <th>Comida</th>
-                  <th>Horas trabajadas</th>
-                  
+                  <th>Horas trabajadas</th>  
                 </tr>
               </thead>
               
               <tbody id="tabla">
-                <!-- Las filas se generan con JS -->
+                <!-- Las filas se generan con JS (script) -->
               </tbody>
             </table>
           
@@ -191,13 +79,11 @@
             </div>
           
             
-            <script> 
+            <script> //Creacion de Tabla
               const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; /*<!-- Lista de dias -->*/ 
               const tabla = document.getElementById("tabla");
-              const resumen = document.getElementById("resumen");
-          
-          
-              
+              const resumen = document.getElementById("resumen");       
+
               function crearFila(dia, i) 
               {
                 const tr = document.createElement("tr");
@@ -212,14 +98,12 @@
                 entrada.oninput = calcularTodo; /*Llama a una funcion*/
                 tdEntrada.appendChild(entrada);
           
-          
                 const tdSalida = document.createElement("td");
                 const salida = document.createElement("input");
                 salida.type = "time";
                 salida.id = `salida-${i}`;
                 salida.oninput = calcularTodo; /*Llama a una funcion*/
                 tdSalida.appendChild(salida);
-          
           
                 const tdComida = document.createElement("td");
                 const comida = document.createElement("input");
@@ -230,7 +114,6 @@
                 comida.min = "0";    // No permitir negativos
                 comida.oninput = calcularTodo; // Para recalcular si cambia
                 tdComida.appendChild(comida);
-                
                 
                 const tdHoras = document.createElement("td");
                 tdHoras.id = `horas-${i}`;
@@ -288,28 +171,27 @@
               // Inicializar tabla
               dias.forEach((dia, i) => crearFila(dia, i));    
 
-              function actualizarDia() {
+              function actualizarDia() //Marca el dia que es hoy
+              {
                 const dia = new Date().getDay();
                 const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
                 const diaSemana = diasSemana[dia];
 
-              const filas = document.querySelectorAll("#tabla tr");
-              filas.forEach(fila => {
-                if (fila.textContent.includes(diaSemana)) {
-                  fila.style.backgroundColor = "pink";
-                }else{fila.style.backgroundColor = "black";}
-              });
+                const filas = document.querySelectorAll("#tabla tr");
+                filas.forEach(fila => {
+                  if (fila.textContent.includes(diaSemana)) {
+                    fila.style.backgroundColor = "pink";
+                  }else{fila.style.backgroundColor = "black";}
+                });
               }
-
-
               actualizarDia();
               setInterval(actualizarDia, 21600000); //cada 6 horas
             </script>
 
           
-        </div>
+        </div><!-- Columna centro -->
 
-        <div class="columna derecha">
+        <div class="columna derecha"> <!-- Columna derecha -->
           <br>
             <ul>
               <br>Proximos cumpleaños: <br> 
@@ -318,20 +200,18 @@
               <li>Cynthia: 4-Nov</li>
               <li>Mich: 26-Dec</li>
               <li>Cris: 6-Mar</li>
-          </ul>
+            </ul>
 
-          <div id="cumples"></div>
-          
+          <div id="cumples"></div> <!-- Aparece la seccion de cumpleanos mas abajo definida -->
         </div>
 
     </main>
 
 
     <footer>
-      <p id="res"></p>
+      <p id="res"></p> <!-- Muestra el restante de dias para la paga -->
       
       <script>
-
         function actualizarPaga()
         {
           const hoy1 = new Date();
@@ -340,7 +220,7 @@
           let fechaNum=15;
           let Q;
           
-          if (hoy1.getDate() <= 15 )     
+          if (hoy1.getDate() <= 15 )     //que quicena se acerca?
           {
               Q = new Date(year, mes, 15); //fecha completa del 15
           }else
@@ -351,32 +231,26 @@
           
           const fechaSemana = Q.getDay(); //(0 = domingo, 6 = sábado)
           
-          if (fechaSemana === 0) {fechaNum -= 2;}
+          if (fechaSemana === 0) {fechaNum -= 2;} //si es fin de semana, recorre al viernes
           else if (fechaSemana === 6) {fechaNum--;}
           
           const paga = fechaNum - hoy1.getDate();
-          
-          document.getElementById("res").innerText =
-              `Faltan ${paga} días para que paguen`;
+          document.getElementById("res").innerText = `Faltan ${paga} días para que paguen`;
           
           switch(mes)
             {
               case 2: //marzo
                 document.getElementById("cumples").innerHTML = '<br> Feliz MES de cumpleaños Cris!<br> <img src="https://i.makeagif.com/media/9-30-2016/7T2-Rc.gif" style="max-width:200px;">';
                   break;  
-                
               case 5: //junio
                 document.getElementById("cumples").innerHTML = '<br> Feliz MES de cumpleaños Betty!<br><img src="cumple.gif" style="max-width:200px;"> <br> <img src="https://i.makeagif.com/media/9-30-2016/7T2-Rc.gif" style="max-width:200px;">';
                   break;
-                
               case 7: //agosto
               document.getElementById("cumples").innerHTML = '<br> Feliz MES de cumpleaños Melannie!<br> <img src="https://i.makeagif.com/media/9-30-2016/7T2-Rc.gif" style="max-width:200px;">';
                 break;
-                
               case 10: //noviembre
                 document.getElementById("cumples").innerHTML = '<br> Feliz MES de cumpleaños Cynthia!<br> <img src="https://i.makeagif.com/media/9-30-2016/7T2-Rc.gif" style="max-width:200px;">';
                   break; 
-                
               case 11: //diciembre
                 document.getElementById("cumples").innerHTML = '<br> Feliz MES de cumpleaños a mi!<br> <img src="https://i.makeagif.com/media/9-30-2016/7T2-Rc.gif" style="max-width:200px;">';
                   break;  
@@ -387,13 +261,9 @@
         actualizarPaga();
         setInterval(actualizarPaga, 21600000); //cada 6h
 
-      </script>
- 
-      
+      </script>      
     </footer>
 
 </body> <!-- ================================== BODY ====================================== -->  
-
-
-  
+ 
 </html>
