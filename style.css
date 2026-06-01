@@ -1,0 +1,92 @@
+  @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
+
+  body 
+  {
+    font-family: "Square Peg", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    padding: 3rem;
+    background-color: #000000; /*<!-- Color hexadecimal NEGRO -->*/
+    color: #FFFFFF;
+    max-width: 1000px; /*<!-- Ancho maximo de la pantalla -->*/
+    margin: auto;
+  }
+  
+  h1 
+  {
+    text-align: center;
+    font-family: "Bitcount Prop Single", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 270;
+    font-style: normal;
+    font-size: 3rem;
+  }
+  
+  table 
+  {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  th, td /*<!-- Estilos de celdas --> */
+  {
+    border: 1px solid #ddd; 
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  input[type="time"] /*<!-- Estilo de entrada de datos de tiempo --> */
+  {
+    width: 90%;
+    padding: 0.3rem;
+  }
+  
+  .summary /*<!-- Estilo de la caja de salida -->*/ 
+  { 
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #fff;
+    color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  }
+
+      /* ===== Layout principal =-------------------------------------==== */
+  main {
+      flex-wrap: wrap; /* Permite que se acomode en pantallas pequeñas */ 
+      display: grid;
+      grid-template-columns: 15% 70% 15%; /* Proporciones: 2 - 3 - 1 */
+      min-height: 50vh;
+  }
+
+  #hora {
+      font-size: 1rem;
+      margin: 5px 0;
+  }
+   #fecha{
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: 10px 0;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #FFFFFF;
+      color: #000000;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  }
+  ul {
+    font-size: 1rem;
+    margin: 10px;
+  }
+  #cumples{
+    margin-left:1rem;
+    font-size: 1rem;
+  }
+
+  footer {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
