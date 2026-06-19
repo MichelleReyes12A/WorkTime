@@ -236,7 +236,7 @@
           else if (fechaSemana === 6) {fechaNum--;}
           
           const paga = fechaNum - hoy1.getDate();
-          document.getElementById("res").innerText = `Faltan ${paga} días para que paguen \n\n[Propiedad de Software, cualquier intento de robo y/o replica, será enviado a las autoridades]`;
+          document.getElementById("res").innerText = `Faltan ${paga} días para que paguen`;
 
           
           switch(mes)
@@ -263,7 +263,9 @@
         actualizarPaga();
         setInterval(actualizarPaga, 21600000); //cada 6h
 
-      </script>      
+      </script>  
+
+      &copy; [Propiedad de Software, cualquier intento de robo y/o replica, será enviado a las autoridades]
     </footer>
 
 </body> <!-- ================================== BODY ====================================== -->  
