@@ -1,0 +1,89 @@
+/* now-playing-widget.css
+   Estilos BASE del widget "Now Playing". Está pensado para que lo edites
+   libremente: cambia las variables de arriba, o reescribe las clases .np-*
+   por completo — el JS no depende de cómo se vea, solo de estas clases. */
+
+#now-playing {
+  --np-bg: #121212;
+  --np-fg: #ffffff;
+  --np-muted: #b3b3b3;
+  --np-accent: #1db954;
+  --np-radius: 16px;
+  font-family: inherit;
+}
+
+.np-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--np-bg);
+  color: var(--np-fg);
+  border-radius: var(--np-radius);
+  padding: 12px 16px;
+  max-width: 360px;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.np-art {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #333;
+  flex-shrink: 0;
+}
+
+.np-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.np-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.np-artist {
+  margin: 2px 0 8px;
+  font-size: 12px;
+  color: var(--np-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.np-bar {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.np-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--np-accent);
+  transition: width 1s linear;
+}
+
+.np-badge {
+  font-size: 10px;
+  color: var(--np-muted);
+  position: absolute;
+  top: 10px;
+  right: 14px;
+}
+
+.np-card[data-state="playing"] .np-badge {
+  color: var(--np-accent);
+}
+
+.np-card[data-state="error"] .np-title,
+.np-card[data-state="empty"] .np-title {
+  color: var(--np-muted);
+}
