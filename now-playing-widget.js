@@ -6,7 +6,7 @@
 // Solo necesitas cambiar la constante ENDPOINT de abajo por la URL de tu función en Vercel.
 
 (function () {
-  const ENDPOINT = "https://TU-PROYECTO.vercel.app/api/now-playing"; // <-- reemplaza esto
+  const ENDPOINT = "https://now-playing-api.vercel.app/api/now-playing";
   const POLL_MS = 8000; // cada cuántos ms se consulta el endpoint (8s = casi en vivo)
 
   const el = {};
