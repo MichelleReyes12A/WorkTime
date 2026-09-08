@@ -1,13 +1,6 @@
-// now-playing-widget.js
-//
-// Pégalo antes de </body> en tu index.html (o enlázalo como <script src="now-playing-widget.js"></script>),
-// y agrega en algún lugar de tu HTML: <div id="now-playing"></div>
-//
-// Solo necesitas cambiar la constante ENDPOINT de abajo por la URL de tu función en Vercel.
-
 (function () {
-  const ENDPOINT = "https://now-playing-api.vercel.app/api/now-playing";
-  const POLL_MS = 8000; // cada cuántos ms se consulta el endpoint (8s = casi en vivo)
+  const ENDPOINT = "https://now-playing-api.vercel.app/api/now-playing"; // Link devuelto del proyecto de Vercel
+  const POLL_MS = 10000; // cada cuántos ms se consulta el endpoint (10s)
 
   const el = {};
   let localProgress = 0;
