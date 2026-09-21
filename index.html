@@ -95,7 +95,7 @@
                 const entrada = document.createElement("input");
                 entrada.type = "time";
                 entrada.id = `entrada-${i}`;
-                entrada.value = "07:00"; // Valor por defecto
+                entrada.value = "06:30"; // Valor por defecto
                 entrada.oninput = calcularTodo; /*Llama a una funcion*/
                 tdEntrada.appendChild(entrada);
           
@@ -146,7 +146,7 @@
                     const [eh, em] = entrada.split(":").map(Number);
                     const [sh, sm] = salida.split(":").map(Number);
           
-                    let horas = (sh + sm / 60) - (eh + em / 60) - comida; // -1 por comida
+                    let horas = (sh + sm / 60) - (eh + em / 60) - comida; // menos por comida
           
                     horas = Math.max(0, horas);
                     tdHoras.textContent = horas.toFixed(2);
@@ -196,17 +196,17 @@
           <br>
             <ul>
               <br>Proximos cumpleaños: <br> 
-              <li>Melannie: 23-Aug</li>
               <li>Cynthia: 4-Nov</li>
               <li>Mich: 26-Dec</li>
-              <li>Cris: 6-Mar</li>
+              <li>Cris: 6-Mar 🕊️</li>
               <li>Ricardo: 16-Jun</li>
               <li>Betty: 23-Jun</li>
+              <li>Melannie: 23-Aug</li>
             </ul>
 
           <div id="cumples"></div> <!-- Aparece la seccion de cumpleanos mas abajo definida -->
 
-          <div id="now-playing"></div> <!-- Spotify???? (: -->
+          <div id="now-playing"></div> <!-- Spotify (: -->
           
 
         </div>
@@ -248,7 +248,14 @@
           else if (fechaSemana === 6) {fechaNum--;}
           
           const paga = fechaNum - hoy1.getDate();
-          document.getElementById("res").innerText = `Faltan ${paga} días para que paguen`;
+
+          if (paga == 0) {
+            document.getElementById("res").innerText = `HOY PAGAN!! Wuuuu`;
+          }
+          else
+          {
+            document.getElementById("res").innerText = `Faltan ${paga} días para que paguen`;
+          }
 
           
           switch(mes)
