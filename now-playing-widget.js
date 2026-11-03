@@ -1,6 +1,6 @@
 (function () {
-  const ENDPOINT = "https://now-playing-api.vercel.app/api/now-playing"; // Link devuelto del proyecto de Vercel
-  const POLL_MS = 10000; // cada cuántos ms se consulta el endpoint (10s)
+  const ENDPOINT = "https://now-playing-api.vercel.app/api/obsession"; // Link devuelto del proyecto de Vercel
+  const POLL_MS = 60 * 60 * 1000; // cada 60 minutos // cada cuanto tiempo se consulta el endpoint (10s)
 
   const el = {};
   let localProgress = 0;
@@ -74,14 +74,19 @@
 
     durationMs = t.durationMs || 0;
     localProgress = data.progressMs || 0;
+    if (data.state === "obsession") durationMs = 0; // sin barra de progreso
+
 
     if (data.state === "playing") {
       el.badge.textContent = "● En vivo";
     } else if (data.state === "paused") {
       el.badge.textContent = "❚❚ Pausado";
-    } else {
+    } else if (data.state === "obsession") {
+  el.badge.textContent = "♥ Obsesión de la semana";
+    }else {
       el.badge.textContent = "Últ. escuchado";
     }
+    
 
     updateBar();
 
