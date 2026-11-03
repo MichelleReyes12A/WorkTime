@@ -19,7 +19,7 @@
   background: var(--np-bg);
   color: var(--np-fg);
   border-radius: var(--np-radius);
-  padding: 28px 16px 12px;
+  padding: 22px 14px 12px;
   max-width: 360px;
   position: relative;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
